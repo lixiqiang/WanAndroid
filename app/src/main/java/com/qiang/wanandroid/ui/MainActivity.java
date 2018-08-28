@@ -1,7 +1,9 @@
-package com.qiang.wanandroid;
+package com.qiang.wanandroid.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.qiang.wanandroid.R;
 
 public class MainActivity extends AppCompatActivity {
 

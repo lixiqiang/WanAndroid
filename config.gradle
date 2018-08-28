@@ -7,4 +7,45 @@ ext {
             versionCode             : 1,
             versionName             : "1.0"
     ]
+
+
+    version = [
+            supportLibraryVersion   : "27.1.1",
+
+    ]
+
+
+    dependencies  = [
+            //android-support
+            "appcompat-v7"              : "com.android.support:appcompat-v7:${version["supportLibraryVersion"]}",
+
+            "barlibrary"                : "com.gyf.barlibrary:barlibrary:2.3.0",
+
+            // butterKnife
+            "butterknife"               : "com.jakewharton:butterknife:8.8.1",
+            "butterknife-compiler"      : "com.jakewharton:butterknife-compiler:8.8.1",
+
+            //http
+            "retrofit2"                 : "com.squareup.retrofit2:retrofit:2.1.0",
+            "converter-scalars"         : "com.squareup.retrofit2:converter-scalars:2.1.0",
+            "converter-gson"            : "com.squareup.retrofit2:converter-gson:2.1.0",
+            "adapter-rxjava2"           : "com.squareup.retrofit2:adapter-rxjava2:2.2.0",
+
+            //rxjava
+            "rxjava"                    : "io.reactivex.rxjava2:rxjava:2.0.6",
+            "rxandroid"                 : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "rxbinding2"                : "com.jakewharton.rxbinding2:rxbinding:2.0.0",
+            "rxlifecycle2"              : "com.trello.rxlifecycle2:rxlifecycle:2.1.0",
+            "rxlifecomponents"          : "com.trello.rxlifecycle2:rxlifecycle-components:2.1.0",
+
+            //dagger2
+            "dagger"                    : "com.google.dagger:dagger:2.15",
+            "dagger-compiler"           : "com.google.dagger:dagger-compiler:2.15",
+
+            "glide"                     : "com.github.bumptech.glide:glide:4.7.1" ,
+            "glede-compiler"            : "com.github.bumptech.glide:compiler:4.7.1",
+            "FlycoTabLayout_Lib"        : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
+
+
+    ]
 }
