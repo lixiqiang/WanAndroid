@@ -3,6 +3,7 @@ package com.qiang.wanandroid.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -13,6 +14,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     public T mPresenter;
 
+    public ImmersionBar immersionBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         setContentView(getLayoutId());
 
         ButterKnife.bind(this);
-        ImmersionBar.with(this).init();
+//        ImmersionBar.with(this).init();
+        immersionBar = ImmersionBar.with(this);
+        immersionBar.init();
 
         mPresenter = initPresenter();
         if (mPresenter != null) {
@@ -42,9 +47,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Override
     protected void onDestroy() {
+        Log.e("onDestroy", "onDestroy");
         if (mPresenter != null) {
             mPresenter.detachView();
             mPresenter = null;
+        }
+        if (immersionBar != null) {
+            immersionBar.destroy();
         }
         super.onDestroy();
     }

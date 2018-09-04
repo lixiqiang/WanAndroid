@@ -84,6 +84,8 @@ public abstract class BaseFragment <T extends BasePresenter> extends Fragment im
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 }

@@ -18,37 +18,50 @@ android {
     }
     productFlavors {
     }
+
+    allprojects {
+        repositories {
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
+    }
+
 }
+
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["barlibrary"]
-
     implementation rootProject.ext.dependencies["retrofit2"]
     implementation rootProject.ext.dependencies["converter-scalars"]
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["adapter-rxjava2"]
-
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["rxbinding2"]
     implementation rootProject.ext.dependencies["rxlifecycle2"]
     implementation rootProject.ext.dependencies["rxlifecomponents"]
-
     implementation rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     implementation rootProject.ext.dependencies["butterknife"]
-    implementation rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     implementation rootProject.ext.dependencies["glide"]
-    implementation rootProject.ext.dependencies["glede-compiler"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["FlycoTabLayout_Lib"]
-
-
+    debugImplementation rootProject.ext.dependencies["leakcanary-android"]
+    releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
+    testImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
+    implementation rootProject.ext.dependencies["ByeBurger"]
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapter"]
 
 }

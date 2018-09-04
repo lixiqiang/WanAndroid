@@ -1,6 +1,8 @@
 package com.qiang.wanandroid.base;
 
 
+import android.util.Log;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -20,6 +22,7 @@ public class BasePresenter <T extends BaseView> {
         this.mView = null;
         if (compositeDisposable != null) {
             compositeDisposable.clear();
+            Log.e("detachView", "detachView");
         }
     }
 

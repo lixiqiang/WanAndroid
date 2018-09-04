@@ -3,6 +3,8 @@ package com.qiang.wanandroid.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.squareup.leakcanary.LeakCanary;
+
 
 public class WanAndroidApp extends Application {
 
@@ -13,6 +15,7 @@ public class WanAndroidApp extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
+        LeakCanary.install(this);
 
     }
 
