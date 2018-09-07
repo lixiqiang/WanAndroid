@@ -25,7 +25,8 @@
         <FrameLayout
             android:id="@+id/main_fragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <com.flyco.tablayout.CommonTabLayout
             android:id="@+id/main_tab"
@@ -50,6 +51,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_5bc3e6"
         android:layout_gravity="start"
+        android:visibility="gone"
         android:clickable="true">
 
         <TextView

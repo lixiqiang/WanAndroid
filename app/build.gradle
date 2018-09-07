@@ -63,5 +63,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ByeBurger"]
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapter"]
+    implementation rootProject.ext.dependencies["agentweb"]
+
 
 }

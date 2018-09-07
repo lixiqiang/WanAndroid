@@ -8,28 +8,10 @@ import java.io.Serializable;
  */
 public class BaseResponse<T> implements Serializable {
 
+    private T data;
+    private int errorCode;
+    private String errorMsg;
 
-
-
-    private int error;
-    private String msg;
-    private  T data;
-
-    public int getError() {
-        return error;
-    }
-
-    public void setError(int error) {
-        this.error = error;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     public T getData() {
         return data;
@@ -37,5 +19,21 @@ public class BaseResponse<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.qiang.wanandroid">
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +23,7 @@
         </activity>
 
         <activity android:name=".ui.main.activity.MainActivity" />
+        <activity android:name=".ui.main.activity.ArticleActivity" />
 
     </application>
 

@@ -4,19 +4,29 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.qiang.wanandroid.R;
 import com.qiang.wanandroid.base.BaseFragment;
+import com.qiang.wanandroid.base.BaseResponse;
 import com.qiang.wanandroid.ui.home.adapter.HomeArticleAdapter;
+import com.qiang.wanandroid.ui.home.model.ArticleListBean;
 import com.qiang.wanandroid.ui.home.presenter.MainHomeFragmentPresenter;
 import com.qiang.wanandroid.ui.home.view.MainHomeFragmentView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @auther lixiqiang
@@ -29,16 +39,17 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
     private static final String ARG_PARAM2 = "param2";
 
 
-//    @BindView(R.id.common_toolbar)
-//    Toolbar commonToolbar;
-
     @BindView(R.id.home_recycler_view)
     RecyclerView homeRecyclerView;
-//    @BindView(R.id.tv_toolbar_title)
-//    TextView tvToolbarTitle;
+    @BindView(R.id.refresh_layout)
+    SmartRefreshLayout refreshLayout;
 
 
     private String mParam;
+
+    private int page;
+    private HomeArticleAdapter articleAdapter;
+    private List<ArticleListBean.DatasBean> mList;
 
 
     @Override
@@ -61,13 +72,41 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
 
     @Override
     protected void initView() {
+        mList = new ArrayList<>();
+        articleAdapter = new HomeArticleAdapter(mList);
+        homeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        homeRecyclerView.setAdapter(articleAdapter);
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                mPresenter.getHomeArticleList(page);
+            }
+        });
+
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                mPresenter.getHomeArticleList(0);
+
+            }
+        });
+
+        articleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ArticleListBean.DatasBean bean = mList.get(position);
+
+
+            }
+        });
 
     }
 
     @Override
     protected void initData() {
-        homeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        homeRecyclerView.setAdapter(new HomeArticleAdapter(getContext()));
+
+        mPresenter.getHomeArticleList(0);
+
     }
 
     public static MainHomeFragment newInstance(String param) {
@@ -78,4 +117,21 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
         return fragment;
     }
 
+    @Override
+    public void getHomeArticleListSuccess(BaseResponse<ArticleListBean> bean) {
+
+        articleAdapter.addData(bean.getData().getDatas());
+        if (bean.getData().getCurPage() == 1) {
+            refreshLayout.finishRefresh();
+        } else {
+            refreshLayout.finishLoadMore();
+        }
+        page = bean.getData().getCurPage();
+
+    }
+
+    @Override
+    public void getHomeArticleListFail() {
+
+    }
 }
