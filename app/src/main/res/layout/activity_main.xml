@@ -51,7 +51,6 @@
         android:layout_height="match_parent"
         android:background="@color/color_5bc3e6"
         android:layout_gravity="start"
-        android:visibility="gone"
         android:clickable="true">
 
         <TextView

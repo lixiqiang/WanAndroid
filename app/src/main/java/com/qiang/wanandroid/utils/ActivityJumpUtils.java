@@ -5,6 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 
 
+/**
+ * @auther lixiqiang
+ * @data：2018/9/8
+ */
 public class ActivityJumpUtils {
 
 
@@ -18,6 +22,8 @@ public class ActivityJumpUtils {
         if (isFinish) {
             startActivity.finish();
         }
-        startActivity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        startActivity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
+
+
 }

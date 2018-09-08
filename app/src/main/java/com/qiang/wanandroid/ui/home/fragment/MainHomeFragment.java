@@ -16,6 +16,7 @@ import com.qiang.wanandroid.ui.home.adapter.HomeArticleAdapter;
 import com.qiang.wanandroid.ui.home.model.ArticleListBean;
 import com.qiang.wanandroid.ui.home.presenter.MainHomeFragmentPresenter;
 import com.qiang.wanandroid.ui.home.view.MainHomeFragmentView;
+import com.qiang.wanandroid.ui.main.activity.ArticleActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -34,7 +35,7 @@ import butterknife.Unbinder;
  */
 public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> implements MainHomeFragmentView {
 
-
+    private static final String TAG = "MainHomeFragment";
     private static final String ARG_PARAM = "param";
     private static final String ARG_PARAM2 = "param2";
 
@@ -95,7 +96,7 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ArticleListBean.DatasBean bean = mList.get(position);
-
+                ArticleActivity.startArticleActivity(getActivity(), bean.getTitle(), bean.getLink());
 
             }
         });
@@ -106,7 +107,6 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
     protected void initData() {
 
         mPresenter.getHomeArticleList(0);
-
     }
 
     public static MainHomeFragment newInstance(String param) {
