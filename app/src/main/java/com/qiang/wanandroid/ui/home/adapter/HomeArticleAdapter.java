@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * @auther lixiqiang
+ * @author lixiqiang
  * @data：2018/9/1 0001
  */
 public class HomeArticleAdapter extends BaseQuickAdapter<ArticleListBean.DatasBean,BaseViewHolder> {

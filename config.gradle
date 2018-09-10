@@ -28,6 +28,7 @@ ext {
             "SmartRefreshLayout"        : "com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1",
             "BaseRecyclerViewAdapter"   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
             "agentweb"                  : 'com.just.agentweb:agentweb:4.0.2' ,
+            "cardview"                  :  'com.android.support:cardview-v7:27.1.1',
 
             // butterKnife
             "butterknife"               : "com.jakewharton:butterknife:8.8.1",

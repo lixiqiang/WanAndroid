@@ -30,8 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * @auther lixiqiang
- * @data：2018/8/31 0031
+ * @author lixiqiang
+ * @data：20018/09/10
  */
 public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> implements MainHomeFragmentView {
 
@@ -77,9 +77,12 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
         articleAdapter = new HomeArticleAdapter(mList);
         homeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         homeRecyclerView.setAdapter(articleAdapter);
+
+
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
+
                 mPresenter.getHomeArticleList(page);
             }
         });
@@ -120,11 +123,14 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
     @Override
     public void getHomeArticleListSuccess(BaseResponse<ArticleListBean> bean) {
 
-        articleAdapter.addData(bean.getData().getDatas());
         if (bean.getData().getCurPage() == 1) {
             refreshLayout.finishRefresh();
+            articleAdapter.replaceData(bean.getData().getDatas());
+
         } else {
             refreshLayout.finishLoadMore();
+            articleAdapter.addData(bean.getData().getDatas());
+
         }
         page = bean.getData().getCurPage();
 
