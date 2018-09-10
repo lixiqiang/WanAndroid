@@ -20,6 +20,7 @@ import com.qiang.wanandroid.R;
 import com.qiang.wanandroid.base.BaseActivity;
 import com.qiang.wanandroid.base.BasePresenter;
 import com.qiang.wanandroid.ui.home.fragment.MainHomeFragment;
+import com.qiang.wanandroid.ui.system.fragment.SystemFragment;
 import com.qiang.wanandroid.utils.TabEntity;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity {
 
     MainHomeFragment mainHomeFragment;
 
-    MainHomeFragment mainSystemFragment;
+    SystemFragment mainSystemFragment;
 
     MainHomeFragment mainNavigationFragment;
 
@@ -145,13 +146,13 @@ public class MainActivity extends BaseActivity {
         int currentTabPosition = 0;
         if (savedInstanceState != null) {
             mainHomeFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainHomeFragment");
-            mainSystemFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainSystemFragment");
+            mainSystemFragment = (SystemFragment) getSupportFragmentManager().findFragmentByTag("mainSystemFragment");
             mainNavigationFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainNavigationFragment");
             mainProjectFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainProjectFragment");
             currentTabPosition = savedInstanceState.getInt(MAIN_TAB_POSITION);
         } else {
             mainHomeFragment = MainHomeFragment.newInstance("");
-            mainSystemFragment = MainHomeFragment.newInstance("");
+            mainSystemFragment = SystemFragment.newInstance("");
             mainNavigationFragment = MainHomeFragment.newInstance("");
             mainProjectFragment = MainHomeFragment.newInstance("");
 
@@ -197,6 +198,8 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.hide(mainNavigationFragment);
                 fragmentTransaction.show(mainProjectFragment);
                 fragmentTransaction.commitAllowingStateLoss();
+                break;
+            default:
                 break;
         }
 

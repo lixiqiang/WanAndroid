@@ -3,7 +3,7 @@ package com.qiang.wanandroid.base;
 import java.io.Serializable;
 
 /**
- * @auther lixiqiang
+ * @author lixiqiang
  * @data：2018/8/16 0016
  */
 public class BaseResponse<T> implements Serializable {
