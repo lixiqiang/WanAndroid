@@ -4,15 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.qiang.wanandroid.R;
 import com.qiang.wanandroid.base.BaseFragment;
 import com.qiang.wanandroid.base.BaseResponse;
-import com.qiang.wanandroid.ui.home.adapter.HomeArticleAdapter;
+import com.qiang.wanandroid.ui.home.adapter.ArticleItemAdapter;
+import com.qiang.wanandroid.ui.home.model.ArticleBean;
 import com.qiang.wanandroid.ui.home.model.ArticleListBean;
 import com.qiang.wanandroid.ui.home.presenter.MainHomeFragmentPresenter;
 import com.qiang.wanandroid.ui.home.view.MainHomeFragmentView;
@@ -26,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author lixiqiang
@@ -49,8 +46,8 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
     private String mParam;
 
     private int page;
-    private HomeArticleAdapter articleAdapter;
-    private List<ArticleListBean.DatasBean> mList;
+    private ArticleItemAdapter articleAdapter;
+    private List<ArticleBean> mList;
 
 
     @Override
@@ -74,7 +71,7 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
     @Override
     protected void initView() {
         mList = new ArrayList<>();
-        articleAdapter = new HomeArticleAdapter(mList);
+        articleAdapter = new ArticleItemAdapter(mList);
         homeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         homeRecyclerView.setAdapter(articleAdapter);
 
@@ -98,7 +95,7 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
         articleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ArticleListBean.DatasBean bean = mList.get(position);
+                ArticleBean bean = mList.get(position);
                 ArticleActivity.startArticleActivity(getActivity(), bean.getTitle(), bean.getLink());
 
             }

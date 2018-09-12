@@ -28,8 +28,8 @@ public class ArticleActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.tv_article_title)
-    TextView tvArticleTitle;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     @BindView(R.id.article_web_view)
     FrameLayout articleWebView;
 
@@ -54,7 +54,7 @@ public class ArticleActivity extends BaseActivity {
             articleTitle = getIntent().getStringExtra(ARTICLE_TITLE);
             articleUrl = getIntent().getStringExtra(ARTICLE_URL);
         }
-        tvArticleTitle.setText(articleTitle);
+        tvTitle.setText(articleTitle);
 
         agentWeb = AgentWeb.with(this)
                 .setAgentWebParent(articleWebView, new LinearLayout.LayoutParams(-1, -1))

@@ -25,6 +25,7 @@
 
         <activity android:name=".ui.main.activity.MainActivity" />
         <activity android:name=".ui.main.activity.ArticleActivity" />
+        <activity android:name=".ui.system.activity.SystemChildActivity" />
 
     </application>
 

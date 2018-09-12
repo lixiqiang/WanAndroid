@@ -1,22 +1,24 @@
-package com.qiang.wanandroid.ui.home.model;
+package com.qiang.wanandroid.ui.system.model;
+
+import com.qiang.wanandroid.ui.home.model.ArticleBean;
 
 import java.util.List;
 
 /**
- * @auther lixiqiang
- * @data：2018/9/4 0004
+ * @author lixiqiang
+ * @data：2018/9/12 0012
  */
-public class ArticleListBean  {
+public class SystemChildList {
 
 
     /**
      * curPage : 1
-     *  datas :[]
+     * data : []
      * offset : 0
      * over : false
-     * pageCount : 81
+     * pageCount : 2
      * size : 20
-     * total : 1604
+     * total : 35
      */
 
     private int curPage;
@@ -82,6 +84,5 @@ public class ArticleListBean  {
     public void setDatas(List<ArticleBean> datas) {
         this.datas = datas;
     }
-
 
 }

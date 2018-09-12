@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.qiang.wanandroid.R;
+import com.qiang.wanandroid.ui.home.model.ArticleBean;
 import com.qiang.wanandroid.ui.home.model.ArticleListBean;
 
 import java.util.List;
@@ -15,15 +16,15 @@ import java.util.List;
  * @author lixiqiang
  * @data：2018/9/1 0001
  */
-public class HomeArticleAdapter extends BaseQuickAdapter<ArticleListBean.DatasBean,BaseViewHolder> {
+public class ArticleItemAdapter extends BaseQuickAdapter<ArticleBean,BaseViewHolder> {
 
 
-    public HomeArticleAdapter(@Nullable List<ArticleListBean.DatasBean> data) {
+    public ArticleItemAdapter(@Nullable List<ArticleBean> data) {
         super(R.layout.item_home_article, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ArticleListBean.DatasBean item) {
+    protected void convert(BaseViewHolder helper, ArticleBean item) {
         helper.setText(R.id.tv_nickname, item.getAuthor());
         helper.setText(R.id.tv_chapter_name, item.getSuperChapterName() + "/" + item.getChapterName());
         helper.setText(R.id.tv_article_title, item.getTitle());
