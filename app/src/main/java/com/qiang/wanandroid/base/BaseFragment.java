@@ -35,6 +35,7 @@ public abstract class BaseFragment <T extends BasePresenter> extends Fragment im
             mPresenter.attachView(this);
         }
         initView();
+        initData();
         return rootView;
     }
 
@@ -47,12 +48,12 @@ public abstract class BaseFragment <T extends BasePresenter> extends Fragment im
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint()) {
-            isVisible = true;
-            lazyLoadData();
-        } else {
-            isVisible = false;
-        }
+//        if (getUserVisibleHint()) {
+//            isVisible = true;
+//            lazyLoadData();
+//        } else {
+//            isVisible = false;
+//        }
     }
 
     @Override
@@ -69,17 +70,17 @@ public abstract class BaseFragment <T extends BasePresenter> extends Fragment im
 
     protected abstract void initView();
 
-    // 懒加载  第一次可见时加载
     protected abstract void initData();
 
-    public void lazyLoadData() {
-        if (isPrepared && isVisible && isFirst) {
-            initData();
-            isFirst = false;
-        } else {
-            return;
-        }
-    }
+
+//    public void lazyLoadData() {
+//        if (isPrepared && isVisible && isFirst) {
+//            initData();
+//            isFirst = false;
+//        } else {
+//            return;
+//        }
+//    }
 
     @Override
     public void onDestroyView() {

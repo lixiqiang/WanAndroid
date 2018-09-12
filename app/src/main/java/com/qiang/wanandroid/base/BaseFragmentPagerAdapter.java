@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @auther lixiqiang
+ * @author lixiqiang
  * @data：2018/8/15
  * 该类内的每一个生成的 Fragment 都将保存在内存之中，适用于相对静态，数量也比较少的页
  */
