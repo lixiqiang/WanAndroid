@@ -20,6 +20,7 @@ import com.qiang.wanandroid.R;
 import com.qiang.wanandroid.base.BaseActivity;
 import com.qiang.wanandroid.base.BasePresenter;
 import com.qiang.wanandroid.ui.home.fragment.MainHomeFragment;
+import com.qiang.wanandroid.ui.navigation.fragment.NavigationFragment;
 import com.qiang.wanandroid.ui.system.fragment.SystemFragment;
 import com.qiang.wanandroid.utils.TabEntity;
 
@@ -28,6 +29,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * @author lixiqiang
+ * @data：2018/09/10
+ */
 public class MainActivity extends BaseActivity {
 
     public static final String MAIN_TAB_POSITION = "main_tab_position";
@@ -58,7 +63,7 @@ public class MainActivity extends BaseActivity {
 
     SystemFragment mainSystemFragment;
 
-    MainHomeFragment mainNavigationFragment;
+    NavigationFragment mainNavigationFragment;
 
     MainHomeFragment mainProjectFragment;
 
@@ -147,13 +152,13 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState != null) {
             mainHomeFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainHomeFragment");
             mainSystemFragment = (SystemFragment) getSupportFragmentManager().findFragmentByTag("mainSystemFragment");
-            mainNavigationFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainNavigationFragment");
+            mainNavigationFragment = (NavigationFragment) getSupportFragmentManager().findFragmentByTag("mainNavigationFragment");
             mainProjectFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainProjectFragment");
             currentTabPosition = savedInstanceState.getInt(MAIN_TAB_POSITION);
         } else {
             mainHomeFragment = MainHomeFragment.newInstance("");
             mainSystemFragment = SystemFragment.newInstance("");
-            mainNavigationFragment = MainHomeFragment.newInstance("");
+            mainNavigationFragment = NavigationFragment.newInstance("");
             mainProjectFragment = MainHomeFragment.newInstance("");
 
             fragmentTransaction.add(R.id.main_fragment, mainHomeFragment, "mainHomeFragment");
