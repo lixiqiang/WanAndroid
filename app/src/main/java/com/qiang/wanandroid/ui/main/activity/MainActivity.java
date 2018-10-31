@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
 
 
     private String[] mTitles = {"首页", "知识体系", "导航", "项目"};
-    private int[] mIconUnselectIds = {
+    private int[] mIconUnSelectIds = {
             R.drawable.home, R.drawable.system, R.drawable.navigation, R.drawable.project};
     private int[] mIconSelectIds = {
             R.drawable.home_selected, R.drawable.system_selected, R.drawable.navigation_selected, R.drawable.project_selected};
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity {
 
     private void initTab() {
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnSelectIds[i]));
         }
         mainTab.setTabData(mTabEntities);
         mainTab.setOnTabSelectListener(new OnTabSelectListener() {
@@ -219,6 +219,8 @@ public class MainActivity extends BaseActivity {
                 if (!drawerLayout.isDrawerOpen(llLeft)) {
                     drawerLayout.openDrawer(llLeft);
                 }
+                break;
+            default:
                 break;
         }
     }

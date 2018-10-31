@@ -8,6 +8,7 @@
         android:id="@+id/tv_navigation_item_title"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@drawable/navi_item_select_bg"
         android:gravity="center"
         android:text="导航"/>
 

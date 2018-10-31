@@ -1,20 +1,22 @@
 package com.qiang.wanandroid.ui.navigation.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.qiang.wanandroid.R;
 import com.qiang.wanandroid.base.BaseFragment;
 import com.qiang.wanandroid.base.BaseFragmentPagerAdapter;
-import com.qiang.wanandroid.base.BasePresenter;
+import com.qiang.wanandroid.base.BaseResponse;
 import com.qiang.wanandroid.ui.navigation.adapter.NavigationTitleAdapter;
+import com.qiang.wanandroid.ui.navigation.model.Articles;
+import com.qiang.wanandroid.ui.navigation.presenter.NavigationPresenter;
+import com.qiang.wanandroid.ui.navigation.view.NavigationView;
 import com.qiang.wanandroid.widget.DefaultTransformer;
 import com.qiang.wanandroid.widget.VerticalViewPager;
 
@@ -22,14 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author lixiqiang
  * @data：2018/9/13 0013
  */
-public class NavigationFragment extends BaseFragment {
+public class NavigationFragment extends BaseFragment<NavigationPresenter> implements NavigationView {
 
 
     @BindView(R.id.navigation_recycler_view)
@@ -43,34 +43,30 @@ public class NavigationFragment extends BaseFragment {
     List<Fragment> fragmentList;
 
 
+
+
     @Override
     public int getLayoutId() {
         return R.layout.navigation_fragment;
     }
 
     @Override
-    public BasePresenter initPresenter() {
-        return null;
+    public NavigationPresenter initPresenter() {
+        return new NavigationPresenter();
     }
 
     @Override
     protected void initView() {
         titles = new ArrayList<>();
         fragmentList = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            titles.add("标题");
-            fragmentList.add(NavigationItemFragment.newInstance(""));
-        }
-
         adapter = new NavigationTitleAdapter(titles);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         navigationRecyclerView.setLayoutManager(manager);
         navigationRecyclerView.setAdapter(adapter);
 
         navigationViewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        navigationViewPager.setPageTransformer(true,new DefaultTransformer());
+        navigationViewPager.setPageTransformer(true, new DefaultTransformer());
 
-        navigationViewPager.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), fragmentList));
 
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -88,6 +84,7 @@ public class NavigationFragment extends BaseFragment {
             @Override
             public void onPageSelected(int position) {
                 navigationRecyclerView.scrollToPosition(position);
+                adapter.setSelected(position);
 
             }
 
@@ -101,6 +98,7 @@ public class NavigationFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        mPresenter.getNavigation();
 
     }
 
@@ -112,4 +110,21 @@ public class NavigationFragment extends BaseFragment {
         return fragment;
     }
 
+
+    @Override
+    public void getNavigationSuccess(BaseResponse<List<Articles>> listBaseResponse) {
+
+        for (int i = 0; i < listBaseResponse.getData().size(); i++) {
+            titles.add(listBaseResponse.getData().get(i).getName());
+            fragmentList.add(NavigationItemFragment.newInstance(listBaseResponse.getData().get(i)));
+        }
+        adapter.setNewData(titles);
+        navigationViewPager.setAdapter(new BaseFragmentPagerAdapter(getChildFragmentManager(), fragmentList));
+
+    }
+
+    @Override
+    public void getNavigationFail() {
+
+    }
 }

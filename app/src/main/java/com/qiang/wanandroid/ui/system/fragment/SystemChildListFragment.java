@@ -78,7 +78,7 @@ public class SystemChildListFragment extends BaseFragment<SystemChildListPresent
 
                 ArticleBean bean = list.get(position);
                 if (bean != null) {
-                    ArticleActivity.startArticleActivity(getActivity(), bean.getTitle(), bean.getApkLink());
+                    ArticleActivity.startArticleActivity(getActivity(), bean.getTitle(), bean.getLink());
                 }
 
             }

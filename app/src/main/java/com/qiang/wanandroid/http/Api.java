@@ -2,6 +2,7 @@ package com.qiang.wanandroid.http;
 
 import com.qiang.wanandroid.base.BaseResponse;
 import com.qiang.wanandroid.ui.home.model.ArticleListBean;
+import com.qiang.wanandroid.ui.navigation.model.Articles;
 import com.qiang.wanandroid.ui.system.model.SystemChildList;
 import com.qiang.wanandroid.ui.system.model.SystemChildren;
 
@@ -31,5 +32,6 @@ public interface Api {
     Observable<BaseResponse<SystemChildList>> getSystemArticleList(@Path("page") int page,
                                                                    @Query("cid") int id);
 
-
+    @GET("/navi/json")
+    Observable<BaseResponse<List<Articles>>> getNavigation();
 }
