@@ -21,6 +21,7 @@ import com.qiang.wanandroid.base.BaseActivity;
 import com.qiang.wanandroid.base.BasePresenter;
 import com.qiang.wanandroid.ui.home.fragment.MainHomeFragment;
 import com.qiang.wanandroid.ui.navigation.fragment.NavigationFragment;
+import com.qiang.wanandroid.ui.project.fragment.ProjectFragment;
 import com.qiang.wanandroid.ui.system.fragment.SystemFragment;
 import com.qiang.wanandroid.utils.TabEntity;
 
@@ -65,7 +66,7 @@ public class MainActivity extends BaseActivity {
 
     NavigationFragment mainNavigationFragment;
 
-    MainHomeFragment mainProjectFragment;
+    ProjectFragment mainProjectFragment;
 
 
     @Override
@@ -153,13 +154,13 @@ public class MainActivity extends BaseActivity {
             mainHomeFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainHomeFragment");
             mainSystemFragment = (SystemFragment) getSupportFragmentManager().findFragmentByTag("mainSystemFragment");
             mainNavigationFragment = (NavigationFragment) getSupportFragmentManager().findFragmentByTag("mainNavigationFragment");
-            mainProjectFragment = (MainHomeFragment) getSupportFragmentManager().findFragmentByTag("mainProjectFragment");
+            mainProjectFragment = (ProjectFragment) getSupportFragmentManager().findFragmentByTag("mainProjectFragment");
             currentTabPosition = savedInstanceState.getInt(MAIN_TAB_POSITION);
         } else {
             mainHomeFragment = MainHomeFragment.newInstance("");
             mainSystemFragment = SystemFragment.newInstance("");
             mainNavigationFragment = NavigationFragment.newInstance("");
-            mainProjectFragment = MainHomeFragment.newInstance("");
+            mainProjectFragment = ProjectFragment.newInstance("");
 
             fragmentTransaction.add(R.id.main_fragment, mainHomeFragment, "mainHomeFragment");
             fragmentTransaction.add(R.id.main_fragment, mainSystemFragment, "mainSystemFragment");

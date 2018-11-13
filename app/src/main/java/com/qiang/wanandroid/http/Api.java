@@ -3,6 +3,7 @@ package com.qiang.wanandroid.http;
 import com.qiang.wanandroid.base.BaseResponse;
 import com.qiang.wanandroid.ui.home.model.ArticleListBean;
 import com.qiang.wanandroid.ui.navigation.model.Articles;
+import com.qiang.wanandroid.ui.project.model.ProjectItemBean;
 import com.qiang.wanandroid.ui.system.model.SystemChildList;
 import com.qiang.wanandroid.ui.system.model.SystemChildren;
 
@@ -34,4 +35,9 @@ public interface Api {
 
     @GET("/navi/json")
     Observable<BaseResponse<List<Articles>>> getNavigation();
+
+
+    @GET("/project/tree/json")
+    Observable<BaseResponse<List<ProjectItemBean>>> getProject();
+
 }

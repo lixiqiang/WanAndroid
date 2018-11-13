@@ -105,7 +105,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     public static NavigationFragment newInstance(String parm) {
         NavigationFragment fragment = new NavigationFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("Parm", parm);
+        bundle.putString("Param", parm);
         fragment.setArguments(bundle);
         return fragment;
     }
