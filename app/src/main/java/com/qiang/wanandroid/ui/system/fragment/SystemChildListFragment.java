@@ -19,6 +19,7 @@ import com.qiang.wanandroid.ui.system.view.SystemChildListFragmentView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,11 +66,18 @@ public class SystemChildListFragment extends BaseFragment<SystemChildListPresent
         systemChildRecyclerView.setLayoutManager(manager);
         systemChildRecyclerView.setAdapter(articleAdapter);
 
-        systemChildRefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
+
+        systemChildRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(RefreshLayout refreshLayout) {
-
                 mPresenter.getSystemChildListArticle(page, id);
+
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                mPresenter.getSystemChildListArticle(0, id);
+
             }
         });
         articleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -111,6 +119,10 @@ public class SystemChildListFragment extends BaseFragment<SystemChildListPresent
             articleAdapter.addData(response.getData().getDatas());
         }
         page = response.getData().getCurPage();
+
+        if (response.getData().isOver()) {
+            systemChildRefresh.setNoMoreData(true);
+        }
 
 
     }

@@ -35,8 +35,9 @@ public class MainHomeFragmentPresenter extends BasePresenter<MainHomeFragmentVie
                     @Override
                     public void onNext(BaseResponse<ArticleListBean> response) {
 
-                        mView.getHomeArticleListSuccess(response);
-
+                        if (response.getErrorCode() == 0) {
+                            mView.getHomeArticleListSuccess(response);
+                        }
                     }
 
                     @Override

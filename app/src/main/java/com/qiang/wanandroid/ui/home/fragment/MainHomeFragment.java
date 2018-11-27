@@ -130,6 +130,9 @@ public class MainHomeFragment extends BaseFragment<MainHomeFragmentPresenter> im
 
         }
         page = bean.getData().getCurPage();
+        if (bean.getData().isOver()) {
+            refreshLayout.setNoMoreData(true);
+        }
 
     }
 

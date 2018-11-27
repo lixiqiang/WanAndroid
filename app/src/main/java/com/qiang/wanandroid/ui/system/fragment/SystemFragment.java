@@ -18,6 +18,8 @@ import com.qiang.wanandroid.ui.system.presenter.SystemFragmentPresenter;
 import com.qiang.wanandroid.ui.system.view.SystemFragmentView;
 import com.qiang.wanandroid.utils.ActivityJumpUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +82,19 @@ public class SystemFragment extends BaseFragment<SystemFragmentPresenter> implem
             }
         });
 
+        systemRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+
+
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                mPresenter.getSystemList();
+
+            }
+        });
     }
 
     @Override
@@ -92,6 +107,7 @@ public class SystemFragment extends BaseFragment<SystemFragmentPresenter> implem
     @Override
     public void getSystemListSuccess(BaseResponse<List<SystemChildren>> listBaseResponse) {
         adapter.addData(listBaseResponse.getData());
+        systemRefreshLayout.setNoMoreData(true);
     }
 
     @Override
